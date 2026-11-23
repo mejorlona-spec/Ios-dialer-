@@ -40,7 +40,6 @@ class CallActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Lockscreen par call screen show hone ke flags
         window.addFlags(
             WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
             WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
@@ -56,7 +55,6 @@ class CallActivity : ComponentActivity() {
             )
         }
 
-        // Call cut hote hi screen apne aap band ho jaye
         CallService.callListener = { call ->
             if (call == null || call.state == Call.STATE_DISCONNECTED) {
                 finish()
@@ -99,7 +97,6 @@ fun IOSCallScreen(onEndCall: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // Top Section: Caller Info
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(top = 20.dp)
@@ -118,7 +115,6 @@ fun IOSCallScreen(onEndCall: () -> Unit) {
                 )
             }
 
-            // Middle Section: 6 Frosted Glass Action Buttons
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -145,13 +141,12 @@ fun IOSCallScreen(onEndCall: () -> Unit) {
                 }
 
                 Row(horizontalArrangement = Arrangement.spacedBy(32.dp)) {
-                    CallActionButton(icon = Icons.Default.AddCall, label = "add call") {}
+                    CallActionButton(icon = Icons.Default.AddIcCall, label = "add call") {}
                     CallActionButton(icon = Icons.Default.Videocam, label = "FaceTime") {}
                     CallActionButton(icon = Icons.Default.Contacts, label = "contacts") {}
                 }
             }
 
-            // Bottom Section: End Call Button
             EndCallButton(onClick = onEndCall)
         }
     }
